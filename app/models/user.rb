@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  has_many :user_rooms
-  has_many :rooms, through: :user_rooms
+  belongs_to :room
 
   validates :username, length: {in: 3..36}
 end
