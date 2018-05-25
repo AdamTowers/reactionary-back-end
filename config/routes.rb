@@ -5,7 +5,10 @@ Rails.application.routes.draw do
       resources :users
       resources :rooms
 
-      post '/sessions/', to: 'sessions#create'
+      post '/sessions/', to: 'sessions#create', as: 'sessions'
+      get '/random-word', to: 'words#random', as: 'words'
     end
   end
+
+  mount ActionCable.server => '/cable'
 end

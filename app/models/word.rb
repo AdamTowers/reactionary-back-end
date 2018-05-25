@@ -1,5 +1,5 @@
 class Word < ApplicationRecord
-  def getRandomWord
+  def self.getRandomWord
     Word.all.sample
   end
 end
