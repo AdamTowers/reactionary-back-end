@@ -9,7 +9,7 @@ room1 = Room.create(name: 'room1')
 
 users = []
 5.times do
-  users << User.create(username: Faker::Internet.user_name(5..8), password_digest: 'password1', room: room1)
+  users << User.create(username: Faker::Internet.user_name(5..8), password_digest: 'password1', room: 1)
 end
 
 Word.create(content: 'dinosaur')
