@@ -15,13 +15,12 @@ module Api
           @user.save
           render json: {
             username: @user.username,
-            token: generate_token(@user)
+            user_id: @user.id,
+            token: generate_token(@user),
           }
         else
-          # not sure if we need flash[:errors] for this but if so:
-          # flash[:errors] = @user.errors.full_messsages
-          render json: @user
-          # status?
+          #how do we show errors?
+          render json: { go_away: true }, status: :unauthorized
         end
       end
 
@@ -40,7 +39,7 @@ module Api
           render json: { go_away: true }, status: :unauthorized
         end
       end
-      
+
     end
   end
 end
