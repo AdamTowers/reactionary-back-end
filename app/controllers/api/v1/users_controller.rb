@@ -9,14 +9,11 @@ module Api
       end
 
       def create
-        @user = User.create(username: params["username"], password: params["password"], room_id: 1)
-
+        @user = User.new(username: params["username"], password: params["password"], room_id: 1)
         if @user.valid?
-          byebug
           @user.save
-          render json: @user
+          render json: token_json(@user)
         else
-          byebug
           #how do we show errors?
           #still allows user to view the canvas, even though token is undefined
           render json: { go_away: true }, status: :unauthorized
