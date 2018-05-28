@@ -3,9 +3,11 @@ module Api
 
     class RoomsController < ApplicationController
       def index
-        @rooms = Room.all
-
-        render json: @rooms, status: 200
+        if (valid_token?)
+          render json: Room.all, status: 200
+        else
+          render json: { go_away: true }, status: :unauthorized
+        end
       end
 
       def show

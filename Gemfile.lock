@@ -51,6 +51,10 @@ GEM
       activesupport
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    dotenv (2.4.0)
+    dotenv-rails (2.4.0)
+      dotenv (= 2.4.0)
+      railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     faker (1.8.7)
       i18n (>= 0.7)
@@ -138,6 +142,7 @@ DEPENDENCIES
   active_model_serializers
   bcrypt (~> 3.1.7)
   byebug
+  dotenv-rails (~> 2.4)
   faker
   jwt (~> 2.1)
   listen (>= 3.0.5, < 3.2)
