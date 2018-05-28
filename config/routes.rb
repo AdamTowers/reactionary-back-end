@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :rooms
 
       post '/sessions/', to: 'sessions#create', as: 'sessions'
-      get '/random-word', to: 'words#random', as: 'words'
+      get '/random-word/', to: 'words#random', as: 'words'
     end
   end
 
