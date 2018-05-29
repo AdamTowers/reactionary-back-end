@@ -4,8 +4,7 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # user = User.find(params['user_id'])
-    byebug
+
     user_room = UserRoom.find_by(room_id: params[:room].split("_")[1].to_i, user_id: params['user_id'].to_i)
     if user_room
       user_room.destroy
@@ -17,6 +16,12 @@ class GamesChannel < ApplicationCable::Channel
   def receive(data)
     puts data
     puts 'SENDING TO GAME ROOM'
+    if data['type'] == 'disconnect'
+      user_room = UserRoom.find_by(room_id: params[:room].split("_")[1].to_i, user_id: params['user_id'].to_i)
+      if user_room
+        user_room.destroy
+      end
+    end
     ActionCable.server.broadcast("#{data['to']}", data)
   end
 end
