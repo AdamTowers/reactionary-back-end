@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 users = []
 5.times do
-  users << User.create(username: Faker::Internet.user_name(5..8), password_digest: 'password1')
+  users << User.create(username: Faker::Internet.user_name(5..8), password: 'password1')
 end
 # pw: min 8
 room1 = Room.create(name: 'room1', user_id: users[0].id)

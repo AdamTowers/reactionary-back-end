@@ -9,12 +9,11 @@ class ApplicationController < ActionController::API
   end
 
   def generate_token(user)
-    user_id = user.id
     JWT.encode({ "user_id": user.id }, jwt_password, 'HS256')
   end
 
   def jwt_password
-    ENV["JWT_PASSWORD"]
+    ENV['JWT_PASSWORD']
   end
 
   def try_decode_token

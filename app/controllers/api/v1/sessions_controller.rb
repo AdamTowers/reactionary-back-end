@@ -5,7 +5,8 @@ module Api
 
       def create
         @user = User.find_by(username: params["username"])
-        if (@user && @user.authenticate(params["password"]))
+        if @user && @user.authenticate(params[:password_digest])
+          p token_json(@user)
           render json: token_json(@user)
         else
           render json: {

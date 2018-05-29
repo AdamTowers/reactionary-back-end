@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       post '/sessions/', to: 'sessions#create', as: 'sessions'
       get '/random-word', to: 'words#random', as: 'words'
+      get '/user_room/:id', to: 'users#show_by_room', as: 'user_room'
     end
   end
 
