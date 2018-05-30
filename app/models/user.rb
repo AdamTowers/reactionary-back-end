@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :user_rooms
   has_many :rooms, through: :user_rooms
   has_secure_password
-  validates :username, length: {in: 3..36}
+  validates :username, length: {in: 3..36}, uniqueness: true
 
   def self.digest(password)
     BCrypt::Password.create(password).to_s
