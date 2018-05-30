@@ -20,7 +20,6 @@ class GamesChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-
     user_room = UserRoom.find_by(room_id: params[:room].split("_")[1].to_i, user_id: params['user_id'].to_i)
     p user_room
     if user_room
@@ -46,6 +45,7 @@ class GamesChannel < ApplicationCable::Channel
     elsif data['type'] == 'delete_game'
       UserRoom.where(room_id: data['to'].split("_")[1]).destroy_all
       Room.find(data['to'].split("_")[1]).destroy
+      ActionCable.server.broadcast("rooms_#{data['to'].split("_")[1]}", data)
     end
     ActionCable.server.broadcast("#{data['to']}", data)
   end
